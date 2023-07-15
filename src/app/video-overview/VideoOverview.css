@@ -1,0 +1,19 @@
+.video-overview-thumbnail {
+    position: relative;
+    width: 100%; 
+    margin-right: 14px; 
+    box-sizing: content-box;
+}
+
+.video-overview-title {
+    padding: '20px';
+}
+
+.video-overview {
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
