@@ -76,6 +76,14 @@ module.exports = require("next/dist/shared/lib/app-router-context");
 
 /***/ }),
 
+/***/ 1830:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/get-img-props");
+
+/***/ }),
+
 /***/ 199:
 /***/ ((module) => {
 
@@ -84,11 +92,35 @@ module.exports = require("next/dist/shared/lib/hash");
 
 /***/ }),
 
+/***/ 6864:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/head");
+
+/***/ }),
+
 /***/ 9569:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("next/dist/shared/lib/hooks-client-context");
+
+/***/ }),
+
+/***/ 2210:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/image-config");
+
+/***/ }),
+
+/***/ 5359:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/image-config-context");
 
 /***/ }),
 
@@ -137,6 +169,14 @@ module.exports = require("next/dist/shared/lib/router/utils/remove-trailing-slas
 
 "use strict";
 module.exports = require("next/dist/shared/lib/server-inserted-html");
+
+/***/ }),
+
+/***/ 8658:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/shared/lib/utils/warn-once");
 
 /***/ }),
 
@@ -251,10 +291,11 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 3902:
+/***/ 9959:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8581));
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 7230, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5396))
 
 /***/ }),
@@ -311,23 +352,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* __next_internal_client_entry_do_not_use__ VideoTitlesList auto */ 
 
-function showTitleOverview() {
-    console.log("implement me to make title display on video overview dynamic");
-}
-function setFocus() {
-    console.log("implement me to make item focused");
-}
+// function showTitleOverview(): void {
+//   console.log('implement me to make title display on video overview dynamic')
+// }
+// function setFocus(): void {
+//   console.log('implement me to make item focused')
+// }
 function VideoTitlesListRow({ video }) {
-    // focused = (focused) ? 'focused' : 'unfocused'
+    const [isHovered, setIsHovered] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    const handleMouseEnter = ()=>{
+        setIsHovered(true);
+    };
+    const handleMouseLeave = ()=>{
+        setIsHovered(false);
+    };
+    const videoTitleClass = isHovered ? "video-title hover:bg-raw-sienna hover:text-cocoa-brown" : "video-title";
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        className: "video-title",
-        onClick: ()=>{
-            setFocus(), showTitleOverview();
-        },
+        className: videoTitleClass,
+        // onClick={() => { 
+        //   setFocus(), 
+        //   showTitleOverview() 
+        //   }}
+        onMouseEnter: handleMouseEnter,
+        onMouseLeave: handleMouseLeave,
         children: video.title
     });
 }
-// const FocusableVideoTitlesListRow = withFocusable(VideoTitlesListRow)
 function VideoTitlesList({ data }) {
     const list = [];
     data.forEach((video)=>{
@@ -569,53 +619,33 @@ const VideoTitlesList_default_ = VideoTitlesList_proxy.default;
 
 const VideoTitlesList_e0 = VideoTitlesList_proxy["VideoTitlesList"];
 
+// EXTERNAL MODULE: ./node_modules/next/image.js
+var next_image = __webpack_require__(3501);
+var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 ;// CONCATENATED MODULE: ./src/app/video-overview/VideoOverview.tsx
+
 
 
 // TODO: When hover over thumbnail, view text that tell the user to click if they want to play the video.
 // When clicked, it will redirect to the video interactive player.
-function VideoOverviewThumbnail({ src }) {
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        className: "poster",
-        style: {
-            position: "relative",
-            width: "100%",
-            marginRight: "14px",
-            boxSizing: "content-box"
-        },
-        children: /*#__PURE__*/ jsx_runtime_.jsx("img", {
-            src: src
-        })
-    });
-}
-function VideoOverviewTitle({ text }) {
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        className: "video-overview-title",
-        style: {
-            padding: "20px"
-        },
-        children: text
-    });
-}
 function VideoOverview({ titleText, thumbnailSrc }) {
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        className: "video-overview",
-        style: {
-            justifyContent: "center",
-            alignContent: "center",
-            flexWrap: "wrap",
-            textAlign: "center",
-            position: "relative",
-            width: "100%"
-        },
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx(VideoOverviewThumbnail, {
-                src: thumbnailSrc
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx(VideoOverviewTitle, {
-                text: titleText
-            })
-        ]
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        className: "justify-center content-center flex-wrap text-center relative w-full",
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            className: "flex flex-col items-center ml-50 mr-30",
+            children: [
+                /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
+                    src: thumbnailSrc,
+                    width: 600,
+                    height: 800,
+                    alt: "The video thumbnail overview image"
+                }),
+                /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                    className: "mt-4 text-xl",
+                    children: titleText
+                })
+            ]
+        })
     });
 }
 
@@ -634,7 +664,7 @@ function FilterableContent({ data, titleText, thumbnailSrc }) {
                 children: /*#__PURE__*/ jsx_runtime_.jsx(e0, {})
             }),
             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "menu",
+                className: "flex justify-around w-full mt-30 flex items-center",
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx("div", {
                         className: "video-titles-list-container",
@@ -657,46 +687,11 @@ function FilterableContent({ data, titleText, thumbnailSrc }) {
 
 
 function Home() {
-    return(// <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    //   <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-    //     <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-    //       Get started by editing&nbsp;
-    //       <code className="font-mono font-bold">src/app/page.tsx</code>
-    //     </p>
-    //     <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-    //       <a
-    //         className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-    //         href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         By{' '}
-    //         <Image
-    //           src="/vercel.svg"
-    //           alt="Vercel Logo"
-    //           className="dark:invert"
-    //           width={100}
-    //           height={24}
-    //           priority
-    //         />
-    //       </a>
-    //     </div>
-    //   </div>
-    //   <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-    //     <Image
-    //       className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-    //       src="/next.svg"
-    //       alt="Next.js Logo"
-    //       width={180}
-    //       height={37}
-    //       priority
-    //     />
-    //   </div>
-    /*#__PURE__*/ jsx_runtime_.jsx(FilterableContent, {
+    return /*#__PURE__*/ jsx_runtime_.jsx(FilterableContent, {
         data: VIDEOS,
         titleText: "select one of the titles from the left",
         thumbnailSrc: "https://upload.wikimedia.org/wikipedia/commons/2/27/Affiche_220_Le_vilain_petit_canard_Fr.jpg"
-    }));
+    });
 }
 
 
@@ -740,7 +735,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,117], () => (__webpack_exec__(272)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,53], () => (__webpack_exec__(272)));
 module.exports = __webpack_exports__;
 
 })();

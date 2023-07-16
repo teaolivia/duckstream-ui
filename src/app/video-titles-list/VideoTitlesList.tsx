@@ -1,27 +1,44 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import { VideoProps } from '../data/data';
 
 
-function showTitleOverview(): void {
-  console.log('implement me to make title display on video overview dynamic')
-}
+// function showTitleOverview(): void {
+//   console.log('implement me to make title display on video overview dynamic')
+// }
 
-function setFocus(): void {
-  console.log('implement me to make item focused')
-}
+// function setFocus(): void {
+//   console.log('implement me to make item focused')
+// }
 
 function VideoTitlesListRow({ video }: { video: VideoProps }): JSX.Element {
-  // focused = (focused) ? 'focused' : 'unfocused'
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  }
+
+  const videoTitleClass = isHovered? 'video-title hover:bg-raw-sienna hover:text-cocoa-brown' : 'video-title';
+
     return (
-        <div className='video-title' onClick={() => { setFocus(), showTitleOverview() }}>
+        <div 
+          className={videoTitleClass}
+          // onClick={() => { 
+          //   setFocus(), 
+          //   showTitleOverview() 
+          //   }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}    
+        >
           {video.title}
         </div>
     );
 }
-
-// const FocusableVideoTitlesListRow = withFocusable(VideoTitlesListRow)
 
 export function VideoTitlesList({ data }: { data: VideoProps[] }): JSX.Element {
   const list: JSX.Element[] = [];

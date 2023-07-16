@@ -12,18 +12,17 @@ interface FilterableContentProps {
 }
 
 export function FilterableContent({ data, titleText, thumbnailSrc }: FilterableContentProps): JSX.Element {
-    return (
-        <div className='filterable-content'>
-        {/* <div className='focus-info'>You're focused on: {this.props.currentFocusPath}</div> */}
-        <div className='search-box'>
-          <SearchBox />
-        </div>
-        <div className='menu'>
-          <div className='video-titles-list-container'>
-            <VideoTitlesList data={data}/>
-          </div>
-          <VideoOverview titleText={titleText} thumbnailSrc={thumbnailSrc} />
-        </div>
+  return (
+    <div className='filterable-content'>
+      <div className='search-box'>
+        <SearchBox />
       </div>
-    );
+      <div className='flex justify-around w-full mt-30 flex items-center'>
+        <div className='video-titles-list-container'>
+          <VideoTitlesList data={data}/>
+        </div>
+        <VideoOverview titleText={titleText} thumbnailSrc={thumbnailSrc} />
+      </div>
+    </div>
+  );
 }

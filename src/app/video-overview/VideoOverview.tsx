@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image'
 
 
 interface VideoOverviewProps {
@@ -8,32 +9,18 @@ interface VideoOverviewProps {
 
 // TODO: When hover over thumbnail, view text that tell the user to click if they want to play the video.
 // When clicked, it will redirect to the video interactive player.
-function VideoOverviewThumbnail({src}: {src: string}): JSX.Element {
-    return (
-        <div className='poster' style={{ position: 'relative', width: '100%', marginRight: '14px', boxSizing: 'content-box' }}>
-            <img src={src}/>
-        </div>
-    );
-}
-
-function VideoOverviewTitle({text}: {text: string} ): JSX.Element {
-    return (
-        <div className='video-overview-title' style={{ padding: '20px' }}>
-            {text}
-        </div>
-    );
-}
-
 export function VideoOverview({ titleText, thumbnailSrc }: VideoOverviewProps): JSX.Element {
     return (
-        <div className='video-overview' style={{ justifyContent: 'center',
-            alignContent: 'center',
-            flexWrap: 'wrap',
-            textAlign: 'center',
-            position: 'relative',
-            width: '100%'}}>
-            <VideoOverviewThumbnail src={thumbnailSrc} />
-            <VideoOverviewTitle text={titleText} />
+        <div className="justify-center content-center flex-wrap text-center relative w-full">
+            <div className="flex flex-col items-center ml-50 mr-30">
+                <Image 
+                    src={thumbnailSrc}
+                    width={600}
+                    height={800}
+                    alt="The video thumbnail overview image"
+                />
+                <p className="mt-4 text-xl">{titleText}</p>
+            </div>
         </div>
     );
 }
