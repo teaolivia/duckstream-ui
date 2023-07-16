@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
         '',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1271)), "/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5925)), "/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -291,27 +291,30 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 9959:
+/***/ 3865:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8581));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 7230, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5396))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3009))
 
 /***/ }),
 
-/***/ 8581:
+/***/ 3009:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   SearchBox: () => (/* binding */ SearchBox)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8038);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  FilterableContent: () => (/* binding */ FilterableContent)
+});
+
+// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(6786);
+// EXTERNAL MODULE: external "next/dist/compiled/react"
+var react_ = __webpack_require__(8038);
+;// CONCATENATED MODULE: ./src/app/search-box/SearchBox.tsx
 /* __next_internal_client_entry_do_not_use__ SearchBox auto */ 
 
 // interface SearchBoxProps {
@@ -323,10 +326,10 @@ function setFocus() {
 }
 function SearchBox() {
     // const focusedClass = (focused) ? 'focused' : 'unfocused'
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         onClick: ()=>setFocus(),
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("form", {
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+        children: /*#__PURE__*/ jsx_runtime_.jsx("form", {
+            children: /*#__PURE__*/ jsx_runtime_.jsx("input", {
                 type: "text",
                 className: "search-box",
                 placeholder: "Search video by title..."
@@ -335,21 +338,7 @@ function SearchBox() {
     });
 }
 
-
-/***/ }),
-
-/***/ 5396:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   VideoTitlesList: () => (/* binding */ VideoTitlesList)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8038);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+;// CONCATENATED MODULE: ./src/app/video-titles-list/VideoTitlesList.tsx
 /* __next_internal_client_entry_do_not_use__ VideoTitlesList auto */ 
 
 // function showTitleOverview(): void {
@@ -358,16 +347,18 @@ __webpack_require__.r(__webpack_exports__);
 // function setFocus(): void {
 //   console.log('implement me to make item focused')
 // }
-function VideoTitlesListRow({ video }) {
-    const [isHovered, setIsHovered] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+function VideoTitlesListRow({ video, handleVideoTitleHover }) {
+    const [isHovered, setIsHovered] = (0,react_.useState)(false);
     const handleMouseEnter = ()=>{
         setIsHovered(true);
+        handleVideoTitleHover(video.title);
     };
     const handleMouseLeave = ()=>{
         setIsHovered(false);
+        handleVideoTitleHover("");
     };
     const videoTitleClass = isHovered ? "video-title hover:bg-raw-sienna hover:text-cocoa-brown" : "video-title";
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: videoTitleClass,
         // onClick={() => { 
         //   setFocus(), 
@@ -378,14 +369,15 @@ function VideoTitlesListRow({ video }) {
         children: video.title
     });
 }
-function VideoTitlesList({ data }) {
+function VideoTitlesList({ data, handleVideoTitleHover }) {
     const list = [];
     data.forEach((video)=>{
-        list.push(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(VideoTitlesListRow, {
-            video: video
+        list.push(/*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesListRow, {
+            video: video,
+            handleVideoTitleHover: handleVideoTitleHover
         }, video.title));
     });
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         style: {
             overflowY: "auto",
             maxHeight: "800px",
@@ -393,6 +385,74 @@ function VideoTitlesList({ data }) {
             padding: "30px"
         },
         children: list
+    });
+}
+
+// EXTERNAL MODULE: ./node_modules/next/image.js
+var next_image = __webpack_require__(8421);
+var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
+;// CONCATENATED MODULE: ./src/app/video-overview/VideoOverview.tsx
+
+
+
+// TODO: When hover over thumbnail, view text that tell the user to click if they want to play the video.
+// When clicked, it will redirect to the video interactive player.
+function VideoOverview({ hoveredVideoTitle, thumbnailSrc }) {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        className: "justify-center content-center flex-wrap text-center relative w-full",
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            className: "flex flex-col items-center ml-50 mr-30",
+            children: [
+                /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
+                    src: thumbnailSrc,
+                    width: 600,
+                    height: 800,
+                    alt: "The video thumbnail overview image"
+                }),
+                /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                    className: "mt-4 text-xl",
+                    children: hoveredVideoTitle
+                })
+            ]
+        })
+    });
+}
+
+;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
+/* __next_internal_client_entry_do_not_use__ FilterableContent auto */ 
+
+
+
+
+function FilterableContent({ data, thumbnailSrc }) {
+    const [hoveredVideoTitle, setHoveredVideoTitle] = (0,react_.useState)("select one of the titles from the left");
+    const handleVideoTitleHover = (title)=>{
+        setHoveredVideoTitle(title);
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        className: "filterable-content",
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                className: "search-box",
+                children: /*#__PURE__*/ jsx_runtime_.jsx(SearchBox, {})
+            }),
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                className: "flex justify-around w-full mt-30 flex items-center",
+                children: [
+                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                        className: "video-titles-list-container",
+                        children: /*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesList, {
+                            data: data,
+                            handleVideoTitleHover: handleVideoTitleHover
+                        })
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(VideoOverview, {
+                        thumbnailSrc: thumbnailSrc,
+                        hoveredVideoTitle: hoveredVideoTitle
+                    })
+                ]
+            })
+        ]
     });
 }
 
@@ -434,7 +494,7 @@ function RootLayout({ children }) {
 
 /***/ }),
 
-/***/ 1271:
+/***/ 5925:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -589,13 +649,11 @@ const VIDEOS = [
     }
 ];
 
-// EXTERNAL MODULE: ./node_modules/next/dist/compiled/react/react.shared-subset.js
-var react_shared_subset = __webpack_require__(6261);
 // EXTERNAL MODULE: ./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js
 var module_proxy = __webpack_require__(7814);
-;// CONCATENATED MODULE: ./src/app/search-box/SearchBox.tsx
+;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
 
-const proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/duckstream-ui/src/app/search-box/SearchBox.tsx`)
+const proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/duckstream-ui/src/app/filterable-content/FilterableContent.tsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -604,92 +662,15 @@ const proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/d
 const { __esModule, $$typeof } = proxy;
 const __default__ = proxy.default;
 
-const e0 = proxy["SearchBox"];
-
-;// CONCATENATED MODULE: ./src/app/video-titles-list/VideoTitlesList.tsx
-
-const VideoTitlesList_proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/duckstream-ui/src/app/video-titles-list/VideoTitlesList.tsx`)
-
-// Accessing the __esModule property and exporting $$typeof are required here.
-// The __esModule getter forces the proxy target to create the default export
-// and the $$typeof value is for rendering logic to determine if the module
-// is a client boundary.
-const { __esModule: VideoTitlesList_esModule, $$typeof: VideoTitlesList_$$typeof } = VideoTitlesList_proxy;
-const VideoTitlesList_default_ = VideoTitlesList_proxy.default;
-
-const VideoTitlesList_e0 = VideoTitlesList_proxy["VideoTitlesList"];
-
-// EXTERNAL MODULE: ./node_modules/next/image.js
-var next_image = __webpack_require__(3501);
-var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
-;// CONCATENATED MODULE: ./src/app/video-overview/VideoOverview.tsx
-
-
-
-// TODO: When hover over thumbnail, view text that tell the user to click if they want to play the video.
-// When clicked, it will redirect to the video interactive player.
-function VideoOverview({ titleText, thumbnailSrc }) {
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        className: "justify-center content-center flex-wrap text-center relative w-full",
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-            className: "flex flex-col items-center ml-50 mr-30",
-            children: [
-                /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
-                    src: thumbnailSrc,
-                    width: 600,
-                    height: 800,
-                    alt: "The video thumbnail overview image"
-                }),
-                /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                    className: "mt-4 text-xl",
-                    children: titleText
-                })
-            ]
-        })
-    });
-}
-
-;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
-
-
-
-
-
-function FilterableContent({ data, titleText, thumbnailSrc }) {
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        className: "filterable-content",
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "search-box",
-                children: /*#__PURE__*/ jsx_runtime_.jsx(e0, {})
-            }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "flex justify-around w-full mt-30 flex items-center",
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "video-titles-list-container",
-                        children: /*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesList_e0, {
-                            data: data
-                        })
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx(VideoOverview, {
-                        titleText: titleText,
-                        thumbnailSrc: thumbnailSrc
-                    })
-                ]
-            })
-        ]
-    });
-}
+const e0 = proxy["FilterableContent"];
 
 ;// CONCATENATED MODULE: ./src/app/page.tsx
 
 
 
 function Home() {
-    return /*#__PURE__*/ jsx_runtime_.jsx(FilterableContent, {
+    return /*#__PURE__*/ jsx_runtime_.jsx(e0, {
         data: VIDEOS,
-        titleText: "select one of the titles from the left",
         thumbnailSrc: "https://upload.wikimedia.org/wikipedia/commons/2/27/Affiche_220_Le_vilain_petit_canard_Fr.jpg"
     });
 }
@@ -735,7 +716,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,53], () => (__webpack_exec__(272)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(272)));
 module.exports = __webpack_exports__;
 
 })();

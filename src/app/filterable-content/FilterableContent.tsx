@@ -1,3 +1,5 @@
+'use client'
+
 import React,  { FC, useState } from 'react';
 import { SearchBox } from '../search-box/SearchBox';
 import { VideoTitlesList } from '../video-titles-list/VideoTitlesList';
@@ -7,11 +9,16 @@ import { VideoProps } from '../data/data';
 
 interface FilterableContentProps {
   data: VideoProps[];
-  titleText: string;
   thumbnailSrc: string;
 }
 
-export function FilterableContent({ data, titleText, thumbnailSrc }: FilterableContentProps): JSX.Element {
+export function FilterableContent({ data, thumbnailSrc }: FilterableContentProps): JSX.Element {
+  const [hoveredVideoTitle, setHoveredVideoTitle] = useState('')
+  
+  const handleVideoTitleHover = (title: string) => {
+    setHoveredVideoTitle(title);
+  };
+
   return (
     <div className='filterable-content'>
       <div className='search-box'>
@@ -19,9 +26,9 @@ export function FilterableContent({ data, titleText, thumbnailSrc }: FilterableC
       </div>
       <div className='flex justify-around w-full mt-30 flex items-center'>
         <div className='video-titles-list-container'>
-          <VideoTitlesList data={data}/>
+          <VideoTitlesList data={data} handleVideoTitleHover={handleVideoTitleHover}/>
         </div>
-        <VideoOverview titleText={titleText} thumbnailSrc={thumbnailSrc} />
+        <VideoOverview thumbnailSrc={thumbnailSrc} videoTitle={hoveredVideoTitle} />
       </div>
     </div>
   );
