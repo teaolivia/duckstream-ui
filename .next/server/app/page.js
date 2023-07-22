@@ -196,7 +196,7 @@ module.exports = require("url");
 
 /***/ }),
 
-/***/ 272:
+/***/ 2732:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
         '',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5925)), "/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5925)), "/Users/thea.yusuf/playground/duckstream-ui/src/app/page.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -237,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
         }]
       },
         {
-          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5183)), "/home/theayusuf/projects/duckstream-ui/src/app/layout.tsx"],
+          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5183)), "/Users/thea.yusuf/playground/duckstream-ui/src/app/layout.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -248,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       ]
       }.children;
-    const pages = ["/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"];
+    const pages = ["/Users/thea.yusuf/playground/duckstream-ui/src/app/page.tsx"];
 
     
 
@@ -273,7 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5272:
+/***/ 2509:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4249, 23));
@@ -284,14 +284,14 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_
 
 /***/ }),
 
-/***/ 8598:
+/***/ 5138:
 /***/ (() => {
 
 
 
 /***/ }),
 
-/***/ 3865:
+/***/ 8139:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3009))
@@ -317,22 +317,15 @@ var react_ = __webpack_require__(8038);
 ;// CONCATENATED MODULE: ./src/app/search-box/SearchBox.tsx
 /* __next_internal_client_entry_do_not_use__ SearchBox auto */ 
 
-// interface SearchBoxProps {
-//   focused: boolean;
-//   focusPath: string;
-// }
-function setFocus() {
-    console.log("implement focus when clicked");
-}
-function SearchBox() {
-    // const focusedClass = (focused) ? 'focused' : 'unfocused'
+function SearchBox({ filterText, onFilterTextChange }) {
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        onClick: ()=>setFocus(),
         children: /*#__PURE__*/ jsx_runtime_.jsx("form", {
             children: /*#__PURE__*/ jsx_runtime_.jsx("input", {
                 type: "text",
+                value: filterText,
                 className: "search-box",
-                placeholder: "Search video by title..."
+                placeholder: "Search video by title...",
+                onChange: (e)=>onFilterTextChange(e.target.value)
             })
         })
     });
@@ -341,12 +334,6 @@ function SearchBox() {
 ;// CONCATENATED MODULE: ./src/app/video-titles-list/VideoTitlesList.tsx
 /* __next_internal_client_entry_do_not_use__ VideoTitlesList auto */ 
 
-// function showTitleOverview(): void {
-//   console.log('implement me to make title display on video overview dynamic')
-// }
-// function setFocus(): void {
-//   console.log('implement me to make item focused')
-// }
 function VideoTitlesListRow({ video, handleVideoTitleHover }) {
     const [isHovered, setIsHovered] = (0,react_.useState)(false);
     const handleMouseEnter = ()=>{
@@ -357,34 +344,22 @@ function VideoTitlesListRow({ video, handleVideoTitleHover }) {
         setIsHovered(false);
         handleVideoTitleHover("");
     };
-    const videoTitleClass = isHovered ? "video-title hover:bg-raw-sienna hover:text-cocoa-brown" : "video-title";
+    const videoTitleClass = isHovered ? "video-title hover:bg-raw-sienna hover:text-cocoa-brown hover:cursor-pointer" : "video-title";
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: videoTitleClass,
-        // onClick={() => { 
-        //   setFocus(), 
-        //   showTitleOverview() 
-        //   }}
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
         children: video.title
     });
 }
-function VideoTitlesList({ data, handleVideoTitleHover }) {
-    const list = [];
-    data.forEach((video)=>{
-        list.push(/*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesListRow, {
-            video: video,
-            handleVideoTitleHover: handleVideoTitleHover
-        }, video.title));
-    });
+function VideoTitlesList({ data, filterText, handleVideoTitleHover }) {
+    const filteredList = data.filter((video)=>video.title.toLowerCase().includes(filterText.toLowerCase()));
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        style: {
-            overflowY: "auto",
-            maxHeight: "800px",
-            direction: "rtl",
-            padding: "30px"
-        },
-        children: list
+        className: "overflow-y-auto max-h-400px flex-row-reverse p-30",
+        children: filteredList.map((video)=>/*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesListRow, {
+                video: video,
+                handleVideoTitleHover: handleVideoTitleHover
+            }, video.title))
     });
 }
 
@@ -395,9 +370,7 @@ var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 
 
 
-// TODO: When hover over thumbnail, view text that tell the user to click if they want to play the video.
-// When clicked, it will redirect to the video interactive player.
-function VideoOverview({ hoveredVideoTitle, thumbnailSrc }) {
+function VideoOverview({ videoTitle, thumbnailSrc }) {
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: "justify-center content-center flex-wrap text-center relative w-full",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
@@ -411,7 +384,7 @@ function VideoOverview({ hoveredVideoTitle, thumbnailSrc }) {
                 }),
                 /*#__PURE__*/ jsx_runtime_.jsx("p", {
                     className: "mt-4 text-xl",
-                    children: hoveredVideoTitle
+                    children: videoTitle
                 })
             ]
         })
@@ -425,7 +398,8 @@ function VideoOverview({ hoveredVideoTitle, thumbnailSrc }) {
 
 
 function FilterableContent({ data, thumbnailSrc }) {
-    const [hoveredVideoTitle, setHoveredVideoTitle] = (0,react_.useState)("select one of the titles from the left");
+    const [filterText, setFilterText] = (0,react_.useState)("");
+    const [hoveredVideoTitle, setHoveredVideoTitle] = (0,react_.useState)("");
     const handleVideoTitleHover = (title)=>{
         setHoveredVideoTitle(title);
     };
@@ -434,21 +408,25 @@ function FilterableContent({ data, thumbnailSrc }) {
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: "search-box",
-                children: /*#__PURE__*/ jsx_runtime_.jsx(SearchBox, {})
+                children: /*#__PURE__*/ jsx_runtime_.jsx(SearchBox, {
+                    filterText: filterText,
+                    onFilterTextChange: setFilterText
+                })
             }),
             /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "flex justify-around w-full mt-30 flex items-center",
+                className: "flex justify-around w-full mt-30 flex",
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        className: "video-titles-list-container",
+                        className: "ml-10 mr-10px h-full w-full flex",
                         children: /*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesList, {
                             data: data,
+                            filterText: filterText,
                             handleVideoTitleHover: handleVideoTitleHover
                         })
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(VideoOverview, {
                         thumbnailSrc: thumbnailSrc,
-                        hoveredVideoTitle: hoveredVideoTitle
+                        videoTitle: hoveredVideoTitle
                     })
                 ]
             })
@@ -532,120 +510,124 @@ const VIDEOS = [
         title: "Duck Fly To The South"
     },
     {
-        genre: "Horror",
-        title: "Ducks Watch You"
+        genre: "Adventure",
+        title: "The Quacking Adventure"
+    },
+    {
+        genre: "Animation",
+        title: "A Duck's Tale"
+    },
+    {
+        genre: "Mystery",
+        title: "Duck Detective"
     },
     {
         genre: "Comedy",
-        title: "Duck Eating Peas"
+        title: "Mallard Madness"
     },
     {
-        genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
+        genre: "Action",
+        title: "Daring Ducks of the Deep"
     },
     {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
+        genre: "Family",
+        title: "The Lucky Ducklings"
     },
     {
-        genre: "Adventure",
-        title: "Duck Fly To The South"
+        genre: "Thriller",
+        title: "Fowl Play"
     },
     {
-        genre: "Horror",
-        title: "Ducks Watch You"
+        genre: "Superhero",
+        title: "The Duck Knight Rises"
     },
     {
-        genre: "Comedy",
-        title: "Duck Eating Peas"
+        genre: "Reality",
+        title: "Duck Dynasty: The Movie"
     },
     {
-        genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
+        genre: "Fantasy",
+        title: "Webbed Wonders"
     },
     {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
+        genre: "Crime",
+        title: "The Great Duck Heist"
     },
     {
-        genre: "Adventure",
-        title: "Duck Fly To The South"
+        genre: "Sci-Fi",
+        title: "Ducktopia"
     },
     {
-        genre: "Horror",
-        title: "Ducks Watch You"
+        genre: "Drama",
+        title: "Waddle and Quack"
     },
     {
-        genre: "Comedy",
-        title: "Duck Eating Peas"
+        genre: "Western",
+        title: "Duckpot Gold"
     },
     {
-        genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
+        genre: "Spy",
+        title: "The Duck Identity"
     },
     {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
+        genre: "Action",
+        title: "Feathers of Fury"
     },
     {
-        genre: "Adventure",
-        title: "Duck Fly To The South"
-    },
-    {
-        genre: "Horror",
-        title: "Ducks Watch You"
-    },
-    {
-        genre: "Comedy",
-        title: "Duck Eating Peas"
-    },
-    {
-        genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
-    },
-    {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
+        genre: "Sci-Fi",
+        title: "The Duckinator"
     },
     {
         genre: "Adventure",
-        title: "Duck Fly To The South"
+        title: "Quackers in Time"
     },
     {
         genre: "Horror",
-        title: "Ducks Watch You"
+        title: "Duckpocalypse Now"
     },
     {
-        genre: "Comedy",
-        title: "Duck Eating Peas"
+        genre: "Family",
+        title: "The Duckville Express"
     },
     {
-        genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
+        genre: "Drama",
+        title: "The Duck Whisperer"
     },
     {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
-    },
-    {
-        genre: "Adventure",
-        title: "Duck Fly To The South"
-    },
-    {
-        genre: "Comedy",
-        title: "Duck Eating Peas"
+        genre: "Sci-Fi",
+        title: "Invasion of the Giant Ducks"
     },
     {
         genre: "Romance",
-        title: "Duck Cannot Stop Quacking"
+        title: "Dances with Ducks"
     },
     {
-        genre: "Isekai",
-        title: "Wish I Am A Duck"
+        genre: "Action",
+        title: "The Duck Games"
+    },
+    {
+        genre: "Comedy",
+        title: "Splashdown Ducks"
+    },
+    {
+        genre: "Crime",
+        title: "The Duckfather"
     },
     {
         genre: "Adventure",
-        title: "Duck Fly To The South"
+        title: "Bill's Big Adventure"
+    },
+    {
+        genre: "Spy",
+        title: "The Duck Who Loved Me"
+    },
+    {
+        genre: "Fantasy",
+        title: "The Fantastic Duck Voyage"
+    },
+    {
+        genre: "Science Fiction",
+        title: "Return of the Quack"
     }
 ];
 
@@ -653,7 +635,7 @@ const VIDEOS = [
 var module_proxy = __webpack_require__(7814);
 ;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
 
-const proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/duckstream-ui/src/app/filterable-content/FilterableContent.tsx`)
+const proxy = (0,module_proxy.createProxy)(String.raw`/Users/thea.yusuf/playground/duckstream-ui/src/app/filterable-content/FilterableContent.tsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -716,7 +698,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(272)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(2732)));
 module.exports = __webpack_exports__;
 
 })();

@@ -17,15 +17,11 @@ function VideoTitlesListRow({ video, handleVideoTitleHover }: { video: VideoProp
     handleVideoTitleHover('');
   }
 
-  const videoTitleClass = isHovered? 'video-title hover:bg-raw-sienna hover:text-cocoa-brown' : 'video-title';
+  const videoTitleClass = isHovered? 'video-title hover:bg-raw-sienna hover:text-cocoa-brown hover:cursor-pointer' : 'video-title';
 
     return (
         <div 
           className={videoTitleClass}
-          // onClick={() => { 
-          //   setFocus(), 
-          //   showTitleOverview() 
-          //   }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}    
         >
@@ -34,16 +30,16 @@ function VideoTitlesListRow({ video, handleVideoTitleHover }: { video: VideoProp
     );
 }
 
-export function VideoTitlesList({ data, handleVideoTitleHover }: { data: VideoProps[], handleVideoTitleHover: (title: string) => void}): JSX.Element {
-  const list: JSX.Element[] = [];
-  data.forEach(video => {
-    list.push(
-      <VideoTitlesListRow video={video} key={video.title} handleVideoTitleHover={handleVideoTitleHover}/>
-    );
-  });
+export function VideoTitlesList({ data, filterText, handleVideoTitleHover }: { data: VideoProps[], filterText: string, handleVideoTitleHover: (title: string) => void}): JSX.Element {
+  const filteredList = data.filter(video =>
+    video.title.toLowerCase().includes(filterText.toLowerCase())
+  );
+
     return (
-      <div style={{ overflowY: 'auto', maxHeight: '800px', direction: 'rtl', padding: '30px' }}>
-        {list}
+      <div className="overflow-y-auto max-h-400px flex-row-reverse p-30">
+        {filteredList.map((video) =>
+          <VideoTitlesListRow video={video} key={video.title} handleVideoTitleHover={handleVideoTitleHover}/>
+        )}
       </div>
     );
   }

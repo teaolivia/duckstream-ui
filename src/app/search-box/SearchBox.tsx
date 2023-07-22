@@ -4,23 +4,12 @@
 import React from 'react';
 
 
-// interface SearchBoxProps {
-//   focused: boolean;
-//   focusPath: string;
-// }
 
-
-function setFocus(): void {
-  console.log('implement focus when clicked')
-}
-
-export function SearchBox(): JSX.Element {
-  // const focusedClass = (focused) ? 'focused' : 'unfocused'
-
+export function SearchBox({filterText, onFilterTextChange}:{filterText: string, onFilterTextChange: (value: string) => void}): JSX.Element {
   return (
-    <div onClick={()=>setFocus()}>
+    <div>
       <form>
-        <input type="text" className='search-box' placeholder="Search video by title..."/>
+        <input type="text" value={filterText} className='search-box' placeholder="Search video by title..." onChange={(e) => onFilterTextChange(e.target.value)}/>
       </form>
     </div>
   );
