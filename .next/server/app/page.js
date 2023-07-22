@@ -355,7 +355,12 @@ function VideoTitlesListRow({ video, handleVideoTitleHover }) {
 function VideoTitlesList({ data, filterText, handleVideoTitleHover }) {
     const filteredList = data.filter((video)=>video.title.toLowerCase().includes(filterText.toLowerCase()));
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        className: "overflow-y-auto max-h-400px flex-row-reverse p-30",
+        style: {
+            overflowY: "auto",
+            maxHeight: "800px",
+            direction: "rtl",
+            padding: "30px"
+        },
         children: filteredList.map((video)=>/*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesListRow, {
                 video: video,
                 handleVideoTitleHover: handleVideoTitleHover
@@ -372,14 +377,14 @@ var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 
 function VideoOverview({ videoTitle, thumbnailSrc }) {
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        className: "justify-center content-center flex-wrap text-center relative w-full",
+        className: "justify-center content-center flex-wrap text-center relative w-full items-center inline-block align-middle h-screen flex",
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
             className: "flex flex-col items-center ml-50 mr-30",
             children: [
                 /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
                     src: thumbnailSrc,
-                    width: 600,
-                    height: 800,
+                    width: 300,
+                    height: 400,
                     alt: "The video thumbnail overview image"
                 }),
                 /*#__PURE__*/ jsx_runtime_.jsx("p", {

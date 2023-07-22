@@ -36,7 +36,7 @@ export function VideoTitlesList({ data, filterText, handleVideoTitleHover }: { d
   );
 
     return (
-      <div className="overflow-y-auto max-h-400px flex-row-reverse p-30">
+      <div style={{ overflowY: 'auto', maxHeight: '800px', direction: 'rtl', padding: '30px' }}>
         {filteredList.map((video) =>
           <VideoTitlesListRow video={video} key={video.title} handleVideoTitleHover={handleVideoTitleHover}/>
         )}
