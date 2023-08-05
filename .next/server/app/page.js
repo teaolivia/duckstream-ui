@@ -273,32 +273,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2736:
+/***/ 5272:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4249, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4564, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 772, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 885, 23));
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 772, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 8262, 23))
 
 /***/ }),
 
-/***/ 3865:
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3009))
-
-/***/ }),
-
-/***/ 1283:
+/***/ 8598:
 /***/ (() => {
 
 
 
 /***/ }),
 
-/***/ 3009:
+/***/ 3865:
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 6348))
+
+/***/ }),
+
+/***/ 6348:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -334,7 +334,7 @@ function SearchBox({ filterText, onFilterTextChange }) {
 ;// CONCATENATED MODULE: ./src/app/video-titles-list/VideoTitlesList.tsx
 /* __next_internal_client_entry_do_not_use__ VideoTitlesList auto */ 
 
-function VideoTitlesListRow({ video, handleVideoTitleHover }) {
+function VideoTitlesListRow({ video, handleVideoTitleHover, isOpen, setIsOpen }) {
     const [isHovered, setIsHovered] = (0,react_.useState)(false);
     const handleMouseEnter = ()=>{
         setIsHovered(true);
@@ -344,15 +344,21 @@ function VideoTitlesListRow({ video, handleVideoTitleHover }) {
         setIsHovered(false);
         handleVideoTitleHover("");
     };
+    const toggleOpen = ()=>{
+        setIsOpen(true);
+    };
     const videoTitleClass = isHovered ? "video-title hover:bg-raw-sienna hover:text-cocoa-brown hover:cursor-pointer" : "video-title";
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         className: videoTitleClass,
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
-        children: video.title
+        children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+            onClick: toggleOpen,
+            children: video.title
+        })
     });
 }
-function VideoTitlesList({ data, filterText, handleVideoTitleHover }) {
+function VideoTitlesList({ data, filterText, handleVideoTitleHover, isOpen, onToggleVideoView }) {
     const filteredList = data.filter((video)=>video.title.toLowerCase().includes(filterText.toLowerCase()));
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         style: {
@@ -363,7 +369,9 @@ function VideoTitlesList({ data, filterText, handleVideoTitleHover }) {
         },
         children: filteredList.map((video)=>/*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesListRow, {
                 video: video,
-                handleVideoTitleHover: handleVideoTitleHover
+                handleVideoTitleHover: handleVideoTitleHover,
+                isOpen: isOpen,
+                setIsOpen: onToggleVideoView
             }, video.title))
     });
 }
@@ -396,8 +404,69 @@ function VideoOverview({ videoTitle, thumbnailSrc }) {
     });
 }
 
+// EXTERNAL MODULE: ./node_modules/@mux/mux-player-react/dist/index.mjs + 50 modules
+var dist = __webpack_require__(7057);
+;// CONCATENATED MODULE: ./src/app/video-view/VideoView.tsx
+
+
+
+function VideoViewCloseButton() {
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
+        type: "button",
+        className: "bg-transparent rounded-md p-2 absolute top-0 right-0 text-gray-400 hover:text-gray-500 hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500",
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                className: "sr-only",
+                children: "Close menu"
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+                className: "h-6 w-6",
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor",
+                "aria-hidden": "true",
+                children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round",
+                    "stroke-width": "2",
+                    d: "M6 18L18 6M6 6l12 12"
+                })
+            })
+        ]
+    });
+}
+function VideoView({ isOpen }) {
+    const [showCloseButton, setShowCloseButton] = (0,react_.useState)(false);
+    const handleMouseEnter = ()=>{
+        setShowCloseButton(true);
+    };
+    const handleMouseLeave = ()=>{
+        setShowCloseButton(false);
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave,
+                children: showCloseButton ? /*#__PURE__*/ jsx_runtime_.jsx(VideoViewCloseButton, {}) : null
+            }),
+            isOpen && /*#__PURE__*/ jsx_runtime_.jsx(dist/* default */.Z, {
+                streamType: "on-demand",
+                playbackId: "EcHgOK9coz5K4rjSwOkoE7Y7O01201YMIC200RI6lNxnhs",
+                metadata: {
+                    video_id: "video-id-54321",
+                    video_title: "Test video title",
+                    viewer_user_id: "user-id-007"
+                }
+            })
+        ]
+    });
+}
+
 ;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
 /* __next_internal_client_entry_do_not_use__ FilterableContent auto */ 
+
 
 
 
@@ -405,12 +474,19 @@ function VideoOverview({ videoTitle, thumbnailSrc }) {
 function FilterableContent({ data, thumbnailSrc }) {
     const [filterText, setFilterText] = (0,react_.useState)("");
     const [hoveredVideoTitle, setHoveredVideoTitle] = (0,react_.useState)("");
+    const [isOpen, setIsOpen] = (0,react_.useState)(false);
     const handleVideoTitleHover = (title)=>{
         setHoveredVideoTitle(title);
     };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         className: "filterable-content",
         children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                className: "bg-blend-overlay bg-blend-darken absolute place-content-center",
+                children: isOpen ? /*#__PURE__*/ jsx_runtime_.jsx(VideoView, {
+                    isOpen: isOpen
+                }) : null
+            }),
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: "search-box",
                 children: /*#__PURE__*/ jsx_runtime_.jsx(SearchBox, {
@@ -426,7 +502,9 @@ function FilterableContent({ data, thumbnailSrc }) {
                         children: /*#__PURE__*/ jsx_runtime_.jsx(VideoTitlesList, {
                             data: data,
                             filterText: filterText,
-                            handleVideoTitleHover: handleVideoTitleHover
+                            handleVideoTitleHover: handleVideoTitleHover,
+                            isOpen: isOpen,
+                            onToggleVideoView: setIsOpen
                         })
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(VideoOverview, {
@@ -703,7 +781,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(272)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,701], () => (__webpack_exec__(272)));
 module.exports = __webpack_exports__;
 
 })();
