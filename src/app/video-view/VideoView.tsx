@@ -3,6 +3,19 @@
 
 import MuxPlayer from "@mux/mux-player-react";
 import { useState } from "react";
+import styled from 'styled-components';
+
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
+`;
 
 
 interface VideoViewInterface {
@@ -18,7 +31,7 @@ function VideoViewCloseButton({onToggleVideoView}: {onToggleVideoView: (isOpen: 
     
     return (
         <button type="button" 
-                className="bg-transparent rounded-md p-2 inline-flex items-center justify-end text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna"
+                className="bg-blend-overlay bg-transparent rounded-md p-2 text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna"
                 onClick={handleCloseVideo}>
             <span className="sr-only">Close menu</span>
             <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -41,13 +54,14 @@ export function VideoView({ isOpen, onToggleVideoView }: VideoViewInterface): JS
     }
 
     return (
-        <div>
-            <div 
+        <div className="items-center justify-center">
+            <Overlay>
+            {/* <div 
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-            >
+            > */}
                 <VideoViewCloseButton onToggleVideoView={onToggleVideoView}/> 
-            </div>
+            {/* </div> */}
             {
                 isOpen
                 &&
@@ -61,7 +75,7 @@ export function VideoView({ isOpen, onToggleVideoView }: VideoViewInterface): JS
                     }}
                 />
             }
+            </Overlay>
         </div>
-
     );
 }

@@ -188,6 +188,14 @@ module.exports = require("path");
 
 /***/ }),
 
+/***/ 2781:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
 /***/ 7310:
 /***/ ((module) => {
 
@@ -406,17 +414,30 @@ function VideoOverview({ videoTitle, thumbnailSrc }) {
 
 // EXTERNAL MODULE: ./node_modules/@mux/mux-player-react/dist/index.mjs + 50 modules
 var dist = __webpack_require__(7057);
+// EXTERNAL MODULE: ./node_modules/styled-components/dist/styled-components.cjs.js
+var styled_components_cjs = __webpack_require__(3103);
 ;// CONCATENATED MODULE: ./src/app/video-view/VideoView.tsx
 /* __next_internal_client_entry_do_not_use__ VideoView auto */ 
 
 
+
+const Overlay = styled_components_cjs/* default */.ZP.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
+`;
 function VideoViewCloseButton({ onToggleVideoView }) {
     const handleCloseVideo = ()=>{
         onToggleVideoView(false);
     };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
         type: "button",
-        className: "bg-transparent rounded-md p-2 inline-flex items-center justify-end text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna",
+        className: "bg-blend-overlay bg-transparent rounded-md p-2 text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna",
         onClick: handleCloseVideo,
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("span", {
@@ -448,25 +469,24 @@ function VideoView({ isOpen, onToggleVideoView }) {
     const handleMouseLeave = ()=>{
         setShowCloseButton(false);
     };
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        children: [
-            /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                onMouseEnter: handleMouseEnter,
-                onMouseLeave: handleMouseLeave,
-                children: /*#__PURE__*/ jsx_runtime_.jsx(VideoViewCloseButton, {
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        className: "items-center justify-center",
+        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Overlay, {
+            children: [
+                /*#__PURE__*/ jsx_runtime_.jsx(VideoViewCloseButton, {
                     onToggleVideoView: onToggleVideoView
+                }),
+                isOpen && /*#__PURE__*/ jsx_runtime_.jsx(dist/* default */.Z, {
+                    streamType: "on-demand",
+                    playbackId: "EcHgOK9coz5K4rjSwOkoE7Y7O01201YMIC200RI6lNxnhs",
+                    metadata: {
+                        video_id: "video-id-54321",
+                        video_title: "Test video title",
+                        viewer_user_id: "user-id-007"
+                    }
                 })
-            }),
-            isOpen && /*#__PURE__*/ jsx_runtime_.jsx(dist/* default */.Z, {
-                streamType: "on-demand",
-                playbackId: "EcHgOK9coz5K4rjSwOkoE7Y7O01201YMIC200RI6lNxnhs",
-                metadata: {
-                    video_id: "video-id-54321",
-                    video_title: "Test video title",
-                    viewer_user_id: "user-id-007"
-                }
-            })
-        ]
+            ]
+        })
     });
 }
 
@@ -485,10 +505,10 @@ function FilterableContent({ data, thumbnailSrc }) {
         setHoveredVideoTitle(title);
     };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        className: "filterable-content",
+        className: "filterable-content relative",
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "bg-blend-overlay bg-blend-darken absolute place-content-center",
+                className: "bg-blend-overlay bg-blend-darken absolute justify-center items-center",
                 children: isOpen ? /*#__PURE__*/ jsx_runtime_.jsx(VideoView, {
                     isOpen: isOpen,
                     onToggleVideoView: setIsOpen
@@ -788,7 +808,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,701], () => (__webpack_exec__(272)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,977], () => (__webpack_exec__(272)));
 module.exports = __webpack_exports__;
 
 })();

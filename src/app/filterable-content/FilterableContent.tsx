@@ -23,8 +23,8 @@ export function FilterableContent({ data, thumbnailSrc }: FilterableContentProps
   };
 
   return (
-    <div className='filterable-content'>
-        <div className='bg-blend-overlay bg-blend-darken absolute place-content-center'>
+    <div className='filterable-content relative'>
+        <div className='bg-blend-overlay bg-blend-darken absolute justify-center items-center'>
           { isOpen ? <VideoView isOpen={isOpen} onToggleVideoView={setIsOpen}/> : null }
         </div>
       <div className='search-box'>
