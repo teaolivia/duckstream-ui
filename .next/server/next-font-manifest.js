@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/thea.yusuf/playground/duckstream-ui/src/app/layout":["static/media/2aaf0723e720e8b9-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/theayusuf/projects/duckstream-ui/src/app/layout":["static/media/2aaf0723e720e8b9-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

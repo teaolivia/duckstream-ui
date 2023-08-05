@@ -196,7 +196,7 @@ module.exports = require("url");
 
 /***/ }),
 
-/***/ 2732:
+/***/ 272:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
         '',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5925)), "/Users/thea.yusuf/playground/duckstream-ui/src/app/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5925)), "/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -237,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
         }]
       },
         {
-          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5183)), "/Users/thea.yusuf/playground/duckstream-ui/src/app/layout.tsx"],
+          'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5183)), "/home/theayusuf/projects/duckstream-ui/src/app/layout.tsx"],
           metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2819))).default(props))],
     apple: [],
@@ -248,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       ]
       }.children;
-    const pages = ["/Users/thea.yusuf/playground/duckstream-ui/src/app/page.tsx"];
+    const pages = ["/home/theayusuf/projects/duckstream-ui/src/app/page.tsx"];
 
     
 
@@ -273,28 +273,28 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2509:
+/***/ 2736:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4249, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4564, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 885, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 772, 23));
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 885, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 8262, 23))
 
 /***/ }),
 
-/***/ 5138:
-/***/ (() => {
-
-
-
-/***/ }),
-
-/***/ 8139:
+/***/ 3865:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3009))
+
+/***/ }),
+
+/***/ 1283:
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -640,7 +640,7 @@ const VIDEOS = [
 var module_proxy = __webpack_require__(7814);
 ;// CONCATENATED MODULE: ./src/app/filterable-content/FilterableContent.tsx
 
-const proxy = (0,module_proxy.createProxy)(String.raw`/Users/thea.yusuf/playground/duckstream-ui/src/app/filterable-content/FilterableContent.tsx`)
+const proxy = (0,module_proxy.createProxy)(String.raw`/home/theayusuf/projects/duckstream-ui/src/app/filterable-content/FilterableContent.tsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -703,7 +703,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(2732)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,711], () => (__webpack_exec__(272)));
 module.exports = __webpack_exports__;
 
 })();

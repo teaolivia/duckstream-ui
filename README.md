@@ -62,4 +62,7 @@ The video player view pop up after user click one of the title:
         - `Buttons` (yellow) displays buttons that trigger different states each
 
 #### States
-TBD
+Here are components that requires state:
+0. View `VideoView` component when clicking `VideoTitlesListRow`
+1. Show the *close* button when hover over top right of `VideoView`
+2. Return to `FilterableContent` when clicking *close* button on `VideoView`
