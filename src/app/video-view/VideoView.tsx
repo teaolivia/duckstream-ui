@@ -1,15 +1,25 @@
+'use client'
+
+
 import MuxPlayer from "@mux/mux-player-react";
 import { useState } from "react";
 
 
 interface VideoViewInterface {
     isOpen: boolean;
+    onToggleVideoView: (isOpen: boolean) => void 
 }
 
 
-function VideoViewCloseButton(): JSX.Element {
+function VideoViewCloseButton({onToggleVideoView}: {onToggleVideoView: (isOpen: boolean) => void}): JSX.Element {
+    const handleCloseVideo = () => {
+        onToggleVideoView(false)
+    }
+    
     return (
-        <button type="button" className="bg-transparent rounded-md p-2 absolute top-0 right-0 text-gray-400 hover:text-gray-500 hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+        <button type="button" 
+                className="bg-transparent rounded-md p-2 inline-flex items-center justify-end text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna"
+                onClick={handleCloseVideo}>
             <span className="sr-only">Close menu</span>
             <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -19,7 +29,7 @@ function VideoViewCloseButton(): JSX.Element {
 }
 
 
-export function VideoView({ isOpen }: VideoViewInterface): JSX.Element {
+export function VideoView({ isOpen, onToggleVideoView }: VideoViewInterface): JSX.Element {
     const [showCloseButton, setShowCloseButton] = useState(false)
     
     const handleMouseEnter = () => {
@@ -36,7 +46,7 @@ export function VideoView({ isOpen }: VideoViewInterface): JSX.Element {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                {showCloseButton ? <VideoViewCloseButton /> : null}
+                <VideoViewCloseButton onToggleVideoView={onToggleVideoView}/> 
             </div>
             {
                 isOpen

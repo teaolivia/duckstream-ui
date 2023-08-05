@@ -407,13 +407,17 @@ function VideoOverview({ videoTitle, thumbnailSrc }) {
 // EXTERNAL MODULE: ./node_modules/@mux/mux-player-react/dist/index.mjs + 50 modules
 var dist = __webpack_require__(7057);
 ;// CONCATENATED MODULE: ./src/app/video-view/VideoView.tsx
+/* __next_internal_client_entry_do_not_use__ VideoView auto */ 
 
 
-
-function VideoViewCloseButton() {
+function VideoViewCloseButton({ onToggleVideoView }) {
+    const handleCloseVideo = ()=>{
+        onToggleVideoView(false);
+    };
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("button", {
         type: "button",
-        className: "bg-transparent rounded-md p-2 absolute top-0 right-0 text-gray-400 hover:text-gray-500 hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500",
+        className: "bg-transparent rounded-md p-2 inline-flex items-center justify-end text-gray-400 hover:text-raw-sienna focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raw-sienna",
+        onClick: handleCloseVideo,
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx("span", {
                 className: "sr-only",
@@ -436,7 +440,7 @@ function VideoViewCloseButton() {
         ]
     });
 }
-function VideoView({ isOpen }) {
+function VideoView({ isOpen, onToggleVideoView }) {
     const [showCloseButton, setShowCloseButton] = (0,react_.useState)(false);
     const handleMouseEnter = ()=>{
         setShowCloseButton(true);
@@ -449,7 +453,9 @@ function VideoView({ isOpen }) {
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 onMouseEnter: handleMouseEnter,
                 onMouseLeave: handleMouseLeave,
-                children: showCloseButton ? /*#__PURE__*/ jsx_runtime_.jsx(VideoViewCloseButton, {}) : null
+                children: /*#__PURE__*/ jsx_runtime_.jsx(VideoViewCloseButton, {
+                    onToggleVideoView: onToggleVideoView
+                })
             }),
             isOpen && /*#__PURE__*/ jsx_runtime_.jsx(dist/* default */.Z, {
                 streamType: "on-demand",
@@ -484,7 +490,8 @@ function FilterableContent({ data, thumbnailSrc }) {
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: "bg-blend-overlay bg-blend-darken absolute place-content-center",
                 children: isOpen ? /*#__PURE__*/ jsx_runtime_.jsx(VideoView, {
-                    isOpen: isOpen
+                    isOpen: isOpen,
+                    onToggleVideoView: setIsOpen
                 }) : null
             }),
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
